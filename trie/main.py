@@ -1,7 +1,10 @@
+# Trie is a rooted tree that stores a set of strings
+# Each string starts at the root, and each edge in the tree represents a single character
+
 class TrieNode:
     def __init__(self):
         self.isWord = False
-        self.nodes = {}
+        self.edges = {}
 
 class Trie:
     def __init__(self):
