@@ -1,26 +1,25 @@
+from collections import deque
+
 # Tree class
-import collections
-
-
 class TreeNode():
-    def __init__(self, val):
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.left = None
-        self.right = None
+        self.left = left
+        self.right = right
 
 
 def levelorder(root: TreeNode) -> None:
-    if not root:
-        return
-    q = collections.deque([root])
+    q = deque([root])
 
     while q:
         size = len(q)
-        for i in range(size):
+
+        for _ in range(size):
             curr = q.popleft()
-            print(str(curr.val), end=" ")
-            if curr.left:
-                q.append(curr.left)
-            if curr.right:
-                q.append(curr.right)
-             
+
+            if not curr:
+                continue
+
+            q.append(curr.left)
+            q.append(curr.right)
+    return 
