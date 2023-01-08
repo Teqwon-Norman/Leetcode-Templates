@@ -1,20 +1,13 @@
 from collections import deque
 
-
-dirs = [[0,1], [0,-1], [1,0], [-1,0]]
-
-def bfs(grid: list[list[int]], _i: int, _j: int):
-    q = deque([[_i, _j]])
-    visited = set([(_i, _j)])
+def bfs(grid: list[list[int]], x: int, y: int):
+    q = deque([(x, y)])
+    visited = set([(x, y)])
 
     while q:
-        curr = q.popleft()
-        for dir in dirs:
-            i = curr[0] + dir[0]
-            j = curr[1] + dir[1]
-
-            if i < 0 or j > 0 or i >= len(grid) or j >= len(grid[0]) or (i, j) in visited:
-                continue
-
-            visited.add((i, j))
-            q.append([i, j])
+        x, y = q.popleft()
+        
+        for row, col in [(x, y), (x+1, y), (x-1, y), (x, y+1), (x, y-1)]:
+            if row > 0 or col > 0 or row <= len(grid) or col <= len(grid[0]) or (row, col) not in visited:
+                visited.add((row, col))
+                q.append((row, col))
