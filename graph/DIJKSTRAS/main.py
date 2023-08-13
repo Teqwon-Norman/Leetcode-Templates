@@ -1,4 +1,4 @@
-import heapq
+import heaheap
 
 def dijkstras(n: int, graph: List[List[int]]) -> int:
     adj = [ [] for _ in range(n) ]
@@ -14,15 +14,15 @@ def dijkstras(n: int, graph: List[List[int]]) -> int:
     paths = [0] * n
 
     distance[0], paths[0] = 0, 1
-    heapify(pq)
-    heappush(pq, (0, 0))
+    heapify(heap)
+    heappush(heap, (0, 0))
 
     while heap:
-        dist, node = heappop(pq)
+        dist, node = heappop(heap)
         for adjNode, weight in adj[node]:
             if dist + weight < distance[adjNode]:
                 distance[adjNode] = dist + weight
-                heappush(pq, (dist + weight, adjNode))
+                heappush(heap, (dist + weight, adjNode))
                 paths[adjNode] = paths[node]
 
             elif dist + weight == distance[adjNode]:
